@@ -1,0 +1,66 @@
+<div class='container pulldown'>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="well">Registration Form</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="col-lg-12 well">
+        <div class="row">
+          <form #fm="ngForm" (ngSubmit)="signup(fm.value)">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                  <label>First Name</label>
+                  <input ngModel name="fn" id="firstname" type="text" placeholder="Enter First Name Here.." class="form-control">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label>Last Name</label>
+                  <input ngModel name="ln" type="text" placeholder="Enter Last Name Here.." class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <textarea ngModel name="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 form-group">
+                  <label>City</label>
+                  <input ngModel name="city" type="text" placeholder="Enter City Name Here.." class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input ngModel name="number" type="text" placeholder="Enter Phone Number Here.." class="form-control">
+              </div>
+              <div>
+                <label>Email Address</label>
+                <input ngModel name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input required type="password" name="pass" ngModel #pass="ngModel" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <div class="text-danger" *ngIf="pass.invalid && (pass.dirty || pass.touched)">password required </div>
+              </div>
+
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input required type="password" name="confirmpass" ngModel #confirmpass="ngModel" class="form-control" compare="pass" id=cfmpass placeholder="Confirm Password">
+                <div class="text-danger" *ngIf="confirmpass.invalid && (confirmpass.dirty||confirmpass.touched ) ">
+                  <div *ngIf="confirmpass.errors['required']"> password confirm is required </div>
+                  <div *ngIf="confirmpass.errors['compare']">password do not match</div>
+                </div>
+
+
+
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

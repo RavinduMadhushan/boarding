@@ -1,0 +1,38 @@
+<app-carousel></app-carousel>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4 container">
+      <h4>Search by</h4>
+      <div class="container">
+        <mat-radio-group [(ngModel)] ="list" class="example-radio-group lg" >
+          <mat-radio-button class="active" value="1">Institute  </mat-radio-button>
+          <mat-radio-button value="2">District</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field *ngIf="list==2">
+        <mat-select [(value)]="selectedd">
+          <mat-option value="{{d.value}}" *ngFor="let d of districts" (selectionChange)="someMethod($event.value)">{{d.name}}</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="list==1">
+        <mat-select [(value)]="selectedi" >
+          <mat-option value="{{d.value}}" *ngFor="let d of institutes">{{d.name}}</mat-option>       
+        </mat-select>
+      </mat-form-field>
+
+
+
+    </div>
+    <div class="col-8">
+      <form action="" class="form-inline">
+          <input class="form-control mr-sm-2 large" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+        
+    </div>
+  </div>
+</div>
