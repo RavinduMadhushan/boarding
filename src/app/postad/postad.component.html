@@ -1,1 +1,71 @@
+<div class='container pulldown pullup'>
+    <div class="card">
+        <div class="card-header">
+            <h2>Post Ad</h2>
+        </div>
+        <div class="card-body">
 
+            <div class="col-lg-12">
+                <div>
+                    <form #fm="ngForm" (ngSubmit)="signup(fm.value); fm.reset()">
+                        <div class="alert alert-danger pulldown" *ngIf="error" role="alert">
+                            {{errormessage}}
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 form-group">
+                                    <label>Title</label>
+                                    <input required ngModel #fn="ngModel" name="fn" id="firstname" minlength="4" type="text" placeholder="Enter First Name Here.."
+                                        class="form-control">
+                                    <div class="text-danger" *ngIf="fn.invalid && (fn.dirty || fn.touched)">
+                                        <div *ngIf="fn.errors['required']">Title Required</div>
+                                        <div *ngIf="fn.errors['minlength']">Title Must be at least 4 Charcters</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea ngModel required #address="ngModel" name="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                                <div class="text-danger" *ngIf="address.invalid && (address.dirty || address.touched)">Address required </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>City</label>
+                                    <input required ngModel name="city" #city="ngModel" type="text" placeholder="Enter City Name Here.." class="form-control">
+                                    <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">City required </div>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <label>Phone Number</label>
+                                    <input required ngModel #number="ngModel" name="number" type="text" placeholder="Enter Phone Number Here.." class="form-control">
+                                    <div class="text-danger" *ngIf="number.invalid && (number.dirty || number.touched)">Phone Number required </div>
+                                </div>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                <div class="invalid-feedback">Example invalid custom file feedback</div>
+                            </div>
+
+
+
+
+                            <button class="btn btn-primary" type="submit" [disabled]="fm.invalid">Register</button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container pullup">
+
+</div>
