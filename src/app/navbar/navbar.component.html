@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #2f3744;">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-fixed-top" style="background-color: #2f3744;">
   
   <a class="navbar-brand" routerLink="/">Boarding.lk</a>
 
@@ -27,9 +27,23 @@
 
     <form class="form-inline my-2 my-lg-0 link">
 
-      <button type="button" routerLink="/login" class="btn btn-link link">Login</button>|
-      <button type="button" routerLink="/signup" class="btn btn-link link">Sign Up</button>
+      <button *ngIf="!isLoggedIn()" type="button" routerLink="/login" class="btn btn-link link">Login</button>
+      <button *ngIf="!isLoggedIn()" type="button" routerLink="/signup" class="btn btn-link link">Sign Up</button>
+
+      <a *ngIf="authService.isLoggedIn()" ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{authService.currentUser.name}}
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </a>
+
       <button type="button" routerLink="/Postad" class="btn btn-warning bold">Post AD</button>
+     
     </form>
+
+    
+
   </div>
 </nav>

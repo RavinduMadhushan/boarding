@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { RegisterService } from 'src/app/register.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,29 +13,40 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router : Router) { }
   model;
   ngOnInit() {
   }
 
+  error = false;
+  errormessage = "";
   signup(details) {
 
+    //console.log(details);
     let registerDetails = {
       name: details.fn,
       email: details.email,
       address: details.address,
       city: details.city,
-      phn: details.number,
-      pass: details.pass
+      phonenumber: details.number,
+      password: details.pass
 
     };
+    //console.log(registerDetails);
 
-    console.log(registerDetails);
-
-    this.http.post('http://localhost:1234/auth/registerUser', registerDetails).subscribe((res)=> {
-      console.log(res);
-    })
-
+    this.http.post('http://localhost:3000/api/users/register', registerDetails,{ observe: 'response' }).subscribe((res)=> {
+      console.log(res.status);
+      this.router.navigate(["/login"]);
+    },
+  (err)=> {
+    this.error = true;
+    setTimeout(() => {
+      this.error = false;
+    }, 5000);
+    this.errormessage = err.error;
+    console.log(err.status);
+  });
+ 
   }
 
 }
