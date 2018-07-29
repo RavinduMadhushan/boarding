@@ -1,3 +1,4 @@
+import { AuthServiceService } from './auth-service.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -25,6 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { RegisterService } from 'src/app/register.service';
 import { CommonModule } from '@angular/common';
 import { ValidatorDirective } from './compare/validator.directive';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -60,11 +62,12 @@ import { ValidatorDirective } from './compare/validator.directive';
     MatSelectModule,
     MatCardModule,
     MatDatepickerModule,
-    HttpClientModule
+    HttpClientModule,
 
   ],
   providers: [
-    RegisterService
+    RegisterService,
+    AuthServiceService
   ],
   bootstrap: [AppComponent]
 })
