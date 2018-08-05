@@ -20,13 +20,14 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule,MatCardModule} from '@angular/material';
+import {MatInputModule, MatCardModule} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RegisterService } from 'src/app/register.service';
 import { CommonModule } from '@angular/common';
 import { ValidatorDirective } from './compare/validator.directive';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     MatCardModule,
     MatDatepickerModule,
     HttpClientModule,
-
+    FileUploadModule
   ],
   providers: [
     RegisterService,
