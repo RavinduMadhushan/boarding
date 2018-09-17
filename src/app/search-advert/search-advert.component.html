@@ -1,24 +1,7 @@
-<app-carousel></app-carousel>
-
-<div class="container">
-  <div class="row">
-    <div class="col-3 container">
-      <h4>Search by</h4>
-
-
-      <mat-form-field>
-        <mat-select [(value)]="selectedd" (selectionChange)="selectionChange($event.source.value)">
-          <mat-option value="{{d}}" *ngFor="let d of districts" >{{d}}</mat-option>
-
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="col-9">
-
-      <mat-paginator [length]="count" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="handlepage($event)">
+<div class="container pulldown">
+    <h2>Search Results for {{searchQuery}}</h2>
+    <mat-paginator [length]="count" [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="handlepage($event)">
       </mat-paginator>
-
       <div *ngIf="noResults" class="alert alert-info" role="alert">
         Sorry. We can't Find any Results. . .
       </div>
@@ -35,8 +18,7 @@
                   <h4 class="card-title heading">{{ad.title}}</h4>
                   <p class="card-text">{{ad.description}}</p>
                   <h6>{{ad.city}}</h6>
-                  <h6>{{ad.publishedAt | timeAgo}}</h6>
-                  <a [routerLink]="['/advert', ad._id]" class="btn btn-success btn-sm">Show More</a>
+                  <a [routerLink]="['/advert', ad._id]" class="btn btn-primary btn-sm">Show More</a>
                 </div>
               </div>
 
@@ -45,9 +27,4 @@
         </div>
 
       </section>
-
-
-
-    </div>
-  </div>
 </div>

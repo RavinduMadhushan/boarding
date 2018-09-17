@@ -1,3 +1,5 @@
+import { AdminAuthService } from './admin-auth.service';
+import { AuthGuardService } from './auth-guard.service';
 import { AuthServiceService } from './auth-service.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,6 +30,13 @@ import { CommonModule } from '@angular/common';
 import { ValidatorDirective } from './compare/validator.directive';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FileUploadModule } from 'ng2-file-upload';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { AdvertComponent } from './advert/advert.component';
+import { AdvertSuccessComponent } from './advert-success/advert-success.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { SearchAdvertComponent } from './search-advert/search-advert.component';
+import { NoAccessComponent } from './no-access/no-access.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +49,13 @@ import { FileUploadModule } from 'ng2-file-upload';
     SignupComponent,
     CarouselComponent,
     LoginComponent,
-    ValidatorDirective
+    ValidatorDirective,
+    AdvertComponent,
+    AdvertSuccessComponent,
+    AdminPanelComponent,
+    SearchAdvertComponent,
+    NoAccessComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -54,8 +69,13 @@ import { FileUploadModule } from 'ng2-file-upload';
       { path : '', component : HomeComponent},  
       { path : 'login', component : LoginComponent},
       { path : 'aboutus', component : AboutUsComponent},
-      { path : 'Postad', component : PostadComponent},
+      { path : 'Postad', component : PostadComponent, canActivate : [AuthGuardService]},
       { path : 'signup', component : SignupComponent},
+      { path : 'advert_success/:id', component : AdvertSuccessComponent},
+      { path : 'advert/:_id', component: AdvertComponent },
+      { path : 'admin_panel', component : AdminPanelComponent, canActivate : [AuthGuardService, AdminAuthService]},
+      { path : 'search/:query', component : SearchAdvertComponent},
+      { path : 'no-access', component : NoAccessComponent}
     ]),
     BrowserAnimationsModule,
     MatCheckboxModule,
@@ -64,11 +84,14 @@ import { FileUploadModule } from 'ng2-file-upload';
     MatCardModule,
     MatDatepickerModule,
     HttpClientModule,
-    FileUploadModule
+    FileUploadModule,
+    MatPaginatorModule
   ],
   providers: [
     RegisterService,
-    AuthServiceService
+    AuthServiceService,
+    AuthGuardService,
+    AdminAuthService
   ],
   bootstrap: [AppComponent]
 })

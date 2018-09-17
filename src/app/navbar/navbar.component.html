@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-fixed-top" style="background-color: #2f3744;">
   
-  <a class="navbar-brand" routerLink="/">Boarding.lk</a>
+  <a class="navbar-brand" routerLink="/">TopHome.lk</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -22,8 +22,8 @@
       </li>
 
     </ul>
-    <input class="form-control mr-sm-2 large" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+    <input class="form-control mr-sm-2 large" type="search" [(ngModel)]="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-light my-2 my-sm-0" (click)="searchQuery()" type="submit">Search</button>
 
     <form class="form-inline my-2 my-lg-0 link">
 
@@ -36,6 +36,7 @@
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" (click)="logout()">Logout</a>
+          <a *ngIf="isAdmin()" class="dropdown-item" routerLink="/admin_panel">Admin Panel</a>
         </div>
       </a>
 

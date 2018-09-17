@@ -1,0 +1,41 @@
+<div class="container pulldown">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">{{title}}</h3>
+      <h5>{{description}}</h5>
+      <h6>{{city}}</h6>
+      <h6>contact : {{phn}}</h6>
+      <div class="container pulldown">
+          <ngb-carousel *ngIf="images">
+              <ng-template ngbSlide>
+                <img [src]="images[0]" alt="Random first slide">
+                <div class="carousel-caption">
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]="images[1]" alt="Random second slide">
+                <div class="carousel-caption">
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]="images[2]" alt="Random third slide">
+                <div class="carousel-caption">
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]="images[3]" alt="Random third slide">
+                <div class="carousel-caption">
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img [src]="images[4]" alt="Random third slide">
+                <div class="carousel-caption">
+                </div>
+              </ng-template>
+            </ngb-carousel>
+      </div>
+    </div>
+  </div>
+
+
+</div>

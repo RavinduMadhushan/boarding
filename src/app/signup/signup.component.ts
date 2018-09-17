@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router : Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
   model;
   ngOnInit() {
   }
@@ -22,7 +22,6 @@ export class SignupComponent implements OnInit {
   errormessage = "";
   signup(details) {
 
-    //console.log(details);
     let registerDetails = {
       name: details.fn,
       email: details.email,
@@ -32,21 +31,18 @@ export class SignupComponent implements OnInit {
       password: details.pass
 
     };
-    //console.log(registerDetails);
 
-    this.http.post('http://localhost:3000/api/users/register', registerDetails,{ observe: 'response' }).subscribe((res)=> {
-      console.log(res.status);
+    this.http.post('http://localhost:3000/api/users/register', registerDetails, { observe: 'response' }).subscribe((res) => {
       this.router.navigate(["/login"]);
     },
-  (err)=> {
-    this.error = true;
-    setTimeout(() => {
-      this.error = false;
-    }, 5000);
-    this.errormessage = err.error;
-    console.log(err.status);
-  });
- 
+      (err) => {
+        this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 5000);
+        this.errormessage = err.error;
+      });
+
   }
 
 }

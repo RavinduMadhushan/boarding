@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService : AuthServiceService) { }
+  constructor(public authService : AuthServiceService, private router : Router) { }
+
+  search : String;
 
   ngOnInit() {
   }
@@ -29,6 +31,26 @@ export class NavbarComponent implements OnInit {
     }
     let islogged = !helper.isTokenExpired(token);
     return islogged;
+  }
+
+  isAdmin() {
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      return false;
+    }
+    else {
+      let details = helper.decodeToken(token);
+      return details.isAdmin;
+    }
+
+  }
+
+  searchQuery(){
+    let query = this.search.split(" ");
+    this.router.navigate(['/search' , JSON.stringify(query)]);
+    this.search = "";
   }
 
 }

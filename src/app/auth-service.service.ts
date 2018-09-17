@@ -29,4 +29,19 @@ export class AuthServiceService {
     let islogged = !helper.isTokenExpired(token);
     return islogged;
   }
+
+  isAdmin() {
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      return false;
+    }
+    else {
+      let details = helper.decodeToken(token);
+      return details.isAdmin;
+    }
+
+  }
+
 }
